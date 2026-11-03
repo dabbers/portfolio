@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import { WRITING } from "@consts";
+import { formatMonthYear } from "@lib/utils";
+
+const posts = (await getCollection("writing"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<PageLayout title={WRITING.TITLE} description={WRITING.DESCRIPTION}>
+  <Container>
+    <div class="space-y-10">
+      <div class="animate space-y-2">
+        <h1 class="text-2xl">Writing</h1>
+        <p class="text-stone-600 dark:text-stone-400">{WRITING.DESCRIPTION}</p>
+      </div>
+      <ul class="animate flex flex-col gap-3">
+        {
+          posts.map((post) => (
+            <li>
+              <a
+                href={`/writing/${post.id}`}
+                class="group flex flex-col gap-0.5 rounded-lg border border-stone-900/10 bg-white/40 px-4 py-3 hover:border-accent/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-accent/40 transition-colors duration-200"
+              >
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <span class="font-mono font-semibold text-stone-900 group-hover:text-accent dark:text-stone-100 transition-colors duration-200">
+                    {post.data.title}
+                  </span>
+                  <time datetime={post.data.date.toISOString()} class="font-mono text-xs text-stone-500 dark:text-stone-400">
+                    {formatMonthYear(post.data.date)}
+                  </time>
+                </div>
+                <span class="text-sm text-stone-600 dark:text-stone-400">{post.data.description}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Container>
+</PageLayout>

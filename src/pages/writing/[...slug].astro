@@ -1,0 +1,38 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import BackToPrev from "@components/BackToPrev.astro";
+import { formatMonthYear } from "@lib/utils";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("writing")).filter((p) => !p.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"writing">;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<PageLayout title={post.data.title} description={post.data.description}>
+  <Container>
+    <div class="animate">
+      <BackToPrev href="/writing">Writing</BackToPrev>
+    </div>
+    <div class="animate my-8 space-y-3">
+      <time datetime={post.data.date.toISOString()} class="font-mono text-sm text-stone-500 dark:text-stone-400">
+        {formatMonthYear(post.data.date)}
+      </time>
+      <h1 class="text-2xl">{post.data.title}</h1>
+      <p class="text-stone-600 dark:text-stone-400">{post.data.description}</p>
+    </div>
+    <article class="animate">
+      <Content />
+    </article>
+  </Container>
+</PageLayout>

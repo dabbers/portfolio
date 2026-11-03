@@ -1,0 +1,96 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import BackToPrev from "@components/BackToPrev.astro";
+import StatusBadge from "@components/StatusBadge.astro";
+import Link from "@components/Link.astro";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("projects")).filter((p) => !p.data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: project,
+  }));
+}
+
+type Props = CollectionEntry<"projects">;
+
+const project = Astro.props;
+const { Content } = await render(project);
+const { title, description, status, years, stack, url, repo, cover, coverAlt } = project.data;
+
+const links = [
+  url && { label: new URL(url).host, href: url },
+  repo && { label: "Source", href: repo },
+].filter(Boolean) as { label: string; href: string }[];
+---
+
+<PageLayout title={title} description={description}>
+  <Container>
+    <div class="animate">
+      <BackToPrev href="/projects">Projects</BackToPrev>
+    </div>
+
+    <div class="animate my-8 space-y-4">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <h1 class="text-2xl">{title}</h1>
+        <StatusBadge status={status} />
+      </div>
+      <p class="text-stone-600 dark:text-stone-400">{description}</p>
+
+      <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 font-mono text-sm">
+        {
+          years && (
+            <>
+              <dt class="text-stone-500 dark:text-stone-400">When</dt>
+              <dd>{years}</dd>
+            </>
+          )
+        }
+        {
+          stack.length > 0 && (
+            <>
+              <dt class="text-stone-500 dark:text-stone-400">Stack</dt>
+              <dd>{stack.join(", ")}</dd>
+            </>
+          )
+        }
+        {
+          links.length > 0 && (
+            <>
+              <dt class="text-stone-500 dark:text-stone-400">Links</dt>
+              <dd class="flex flex-wrap gap-x-3">
+                {links.map((l) => (
+                  <Link href={l.href} external>
+                    {l.label}
+                  </Link>
+                ))}
+              </dd>
+            </>
+          )
+        }
+      </dl>
+    </div>
+
+    {
+      cover && (
+        <figure class="animate my-8">
+          <Image
+            src={cover}
+            alt={coverAlt ?? `Screenshot of ${title}`}
+            widths={[480, 720, 1040]}
+            sizes="(min-width: 720px) 65ch, 100vw"
+            class="w-full rounded-md border border-stone-900/10 dark:border-white/10"
+            loading="eager"
+          />
+        </figure>
+      )
+    }
+
+    <article class="animate">
+      <Content />
+    </article>
+  </Container>
+</PageLayout>

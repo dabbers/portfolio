@@ -1,0 +1,36 @@
+---
+import Container from "@components/Container.astro";
+import { SITE } from "@consts";
+
+const path = Astro.url.pathname;
+const navItems = [
+  { href: "/projects", label: "projects" },
+  { href: "/writing", label: "writing" },
+];
+---
+
+<header>
+  <Container>
+    <div class="flex flex-wrap items-baseline justify-between gap-y-2">
+      <a href="/" class="font-mono font-semibold text-accent hover:underline underline-offset-4">
+        {SITE.NAME}
+      </a>
+      <nav class="flex gap-2 font-mono text-sm" aria-label="Site">
+        {
+          navItems.map((item, i) => (
+            <>
+              {i > 0 && <span class="text-stone-400 dark:text-stone-600">/</span>}
+              <a
+                href={item.href}
+                aria-current={path.startsWith(item.href) ? "page" : undefined}
+                class="text-stone-600 hover:text-accent dark:text-stone-400 dark:hover:text-accent aria-[current=page]:text-stone-900 dark:aria-[current=page]:text-stone-100 transition-colors duration-200"
+              >
+                {item.label}
+              </a>
+            </>
+          ))
+        }
+      </nav>
+    </div>
+  </Container>
+</header>

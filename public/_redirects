@@ -1,0 +1,26 @@
+# Old Ghost URLs → new paths (Cloudflare Pages). Keep in sync with the
+# `redirects` map in astro.config.mjs, which covers other static hosts.
+/about                   /                                  301
+/about/                  /                                  301
+/dabot                   /projects/dabot/                   301
+/dabot/                  /projects/dabot/                   301
+/gamer-galaxy            /projects/gamer-galaxy/            301
+/gamer-galaxy/           /projects/gamer-galaxy/            301
+/punatorium              /projects/punatorium/              301
+/punatorium/             /projects/punatorium/              301
+/dabb-it                 /projects/dabb-it/                 301
+/dabb-it/                /projects/dabb-it/                 301
+/referral-roueltte       /projects/referral-roulette/       301
+/referral-roueltte/      /projects/referral-roulette/       301
+/sidelines               /projects/sidelines/               301
+/sidelines/              /projects/sidelines/               301
+/dabberz                 /projects/dabberz/                 301
+/dabberz/                /projects/dabberz/                 301
+/ko-pulls-kollectibles   /projects/kollectibles/            301
+/ko-pulls-kollectibles/  /projects/kollectibles/            301
+/mssql-server-tls-1-2    /writing/mssql-server-tls-1-2/     301
+/mssql-server-tls-1-2/   /writing/mssql-server-tls-1-2/     301
+/rss                     /rss.xml                           301
+/rss/                    /rss.xml                           301
+/tag/*                   /projects/                         301
+/author/*                /                                  301
