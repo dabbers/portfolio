@@ -1,12 +1,12 @@
 ---
 title: dabberz
-description: A platform for running LLM-driven development in parallel, isolated environments.
+description: A concept for running LLM-driven development in parallel, isolated environments. Not yet proven.
 status: building
 years: "2025 –"
-order: 40
+order: 50
 ---
 
-dabberz is a platform for running LLM-driven development in parallel: each task gets its own isolated environment, so several agents can work on a codebase at once without stepping on each other, and nothing they do touches the host.
+dabberz is a concept for running LLM-driven development in parallel: each task gets its own isolated environment, so several agents can work on a codebase at once without stepping on each other, and nothing they do touches the host. It is still an idea being tested rather than a product.
 
 <!-- TODO: add a current screenshot as cover.png and set `cover: ./cover.png` in the frontmatter. -->
 

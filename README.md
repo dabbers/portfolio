@@ -94,12 +94,10 @@ there too, just without real 301 status codes.
 
 ## Cut-over checklist
 
-1. Add current screenshots for Puzzletorium and dabberz (each `index.md` has a
-   TODO comment showing where).
-2. Deploy to Pages, preview on the `*.pages.dev` URL in light and dark mode on
+1. Deploy to Pages, preview on the `*.pages.dev` URL in light and dark mode on
    desktop and phone.
-3. Point DNS at Pages. Check the old links: `/about/`, `/dabot/`, `/gamer-galaxy/`,
+2. Point DNS at Pages. Check the old links: `/about/`, `/dabot/`, `/gamer-galaxy/`,
    `/referral-roueltte/`, `/mssql-server-tls-1-2/`, `/rss/`.
-4. Retire Ghost: stop the container, remove its database and the
+3. Retire Ghost: stop the container, remove its database and the
    `noreply@davidbarajas.com` sending config. With nothing sending outside
    Migadu, move DMARC from `p=quarantine` to `p=reject`.

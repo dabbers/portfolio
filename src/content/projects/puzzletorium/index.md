@@ -1,12 +1,18 @@
 ---
 title: Puzzletorium
-description: A catalog of small puzzle games, built in Godot.
+description: A catalog of small puzzle games, built in Godot. No ads. One puzzle a day, plus free play.
 status: building
 years: "2025 –"
 stack: [Godot]
-order: 30
+url: https://puzzletorium.com
+cover: ./cover.jpg
+coverAlt: The Puzzletorium menu, listing seven games under Grid and Word headings.
+order: 20
 ---
 
 Puzzletorium is a growing catalog of small puzzle games. Each one is a self-contained idea, small enough to finish, built in Godot so they share an engine, a look, and a way of getting out the door.
 
-<!-- TODO: add a current screenshot as cover.png and set `cover: ./cover.png` in the frontmatter. -->
+Every game has a daily puzzle and a free-play mode, and none of them have ads. The current lineup:
+
+- **Grid**: Sudoku, Path (connect the numbers), Slide (free the block), Merge (slide and merge to 2048).
+- **Word**: Word Ladder, Hunch (guess the word in six), Word Wheel (a crossword from six letters).
