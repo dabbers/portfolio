@@ -81,6 +81,11 @@ article {
   }
 }
 
+/* Phone screenshots inside Markdown bodies: keep them phone-sized. */
+article .phone img {
+  @apply mx-auto max-w-[18rem];
+}
+
 /* The IRC-style nick that prefixes the intro. */
 .nick {
   @apply font-mono text-accent;

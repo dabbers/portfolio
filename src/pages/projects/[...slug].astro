@@ -6,6 +6,7 @@ import Container from "@components/Container.astro";
 import BackToPrev from "@components/BackToPrev.astro";
 import StatusBadge from "@components/StatusBadge.astro";
 import Link from "@components/Link.astro";
+import { cn } from "@lib/utils";
 
 export async function getStaticPaths() {
   const projects = (await getCollection("projects")).filter((p) => !p.data.draft);
@@ -82,7 +83,10 @@ const links = [
             alt={coverAlt ?? `Screenshot of ${title}`}
             widths={[480, 720, 1040]}
             sizes="(min-width: 720px) 65ch, 100vw"
-            class="w-full rounded-md border border-stone-900/10 dark:border-white/10"
+            class={cn(
+              "rounded-md border border-stone-900/10 dark:border-white/10",
+              cover.height > cover.width ? "mx-auto max-w-[18rem]" : "w-full",
+            )}
             loading="eager"
           />
         </figure>

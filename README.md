@@ -23,7 +23,7 @@ Node 22 or newer.
 | `src/content/home.md` | The About copy. This is the homepage. |
 | `src/content/projects/<slug>/index.md` | One project per folder. Screenshots sit next to the Markdown and are optimized at build. |
 | `src/content/writing/*.md` | Posts. Only ones worth keeping. |
-| `src/consts.ts` | Site name, contact line, social links. **Fill in the LinkedIn URL here before launch.** |
+| `src/consts.ts` | Site name, contact line, social links. |
 | `src/styles/global.css` | The two accent values and the type rules. |
 | `public/_redirects` | Old Ghost URLs → new paths, as real 301s on Cloudflare Pages. |
 | `astro.config.mjs` | The same redirect map as meta-refresh pages for any other static host. |
@@ -94,13 +94,12 @@ there too, just without real 301 status codes.
 
 ## Cut-over checklist
 
-1. Fill in the LinkedIn URL in `src/consts.ts`.
-2. Add current screenshots for KOmpare, KOllectibles, Puzzletorium, and dabberz
-   (each `index.md` has a TODO comment showing where).
-3. Deploy to Pages, preview on the `*.pages.dev` URL in light and dark mode on
+1. Add current screenshots for Puzzletorium and dabberz (each `index.md` has a
+   TODO comment showing where).
+2. Deploy to Pages, preview on the `*.pages.dev` URL in light and dark mode on
    desktop and phone.
-4. Point DNS at Pages. Check the old links: `/about/`, `/dabot/`, `/gamer-galaxy/`,
+3. Point DNS at Pages. Check the old links: `/about/`, `/dabot/`, `/gamer-galaxy/`,
    `/referral-roueltte/`, `/mssql-server-tls-1-2/`, `/rss/`.
-5. Retire Ghost: stop the container, remove its database and the
+4. Retire Ghost: stop the container, remove its database and the
    `noreply@davidbarajas.com` sending config. With nothing sending outside
    Migadu, move DMARC from `p=quarantine` to `p=reject`.

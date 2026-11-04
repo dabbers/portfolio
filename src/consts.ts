@@ -23,9 +23,9 @@ export const WRITING: Metadata = {
   DESCRIPTION: "A few notes worth keeping around.",
 };
 
-// Entries with an empty HREF are not rendered. Fill in LinkedIn before launch.
+// Entries with an empty HREF are not rendered.
 export const SOCIALS: Socials = [
-  { NAME: "LinkedIn", HREF: "" },
+  { NAME: "LinkedIn", HREF: "https://www.linkedin.com/in/david-barajas-swe" },
   { NAME: "GitHub", HREF: "https://github.com/dabbers" },
 ];
 
