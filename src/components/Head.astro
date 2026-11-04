@@ -57,6 +57,10 @@ const { title, description, image = "/og.png" } = Astro.props;
 
 <ClientRouter />
 
+<!-- Plausible analytics. Carried over from the Ghost site's code injection.
+     Plausible hooks pushState, so it also counts view-transition navigations. -->
+<script is:inline defer data-domain="davidbarajas.com" src="https://plausible.io/js/script.js"></script>
+
 <!-- RSS Link -->
 <link rel="alternate" type="application/rss+xml" title={SITE.NAME} href={new URL("rss.xml", Astro.site)} />
 
