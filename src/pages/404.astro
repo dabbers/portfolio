@@ -1,0 +1,20 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+---
+
+<PageLayout title="Not found" description="That page isn't here.">
+  <Container>
+    <div class="animate space-y-4">
+      <h1 class="text-2xl">404</h1>
+      <p>
+        <span class="nick">&lt;dab&gt;</span> nothing at this address. The old Ghost URLs still redirect, so if
+        you followed a link from somewhere, it has probably moved.
+      </p>
+      <p class="font-mono text-sm">
+        <Link href="/">home</Link> · <Link href="/projects">projects</Link> · <Link href="/writing">writing</Link>
+      </p>
+    </div>
+  </Container>
+</PageLayout>

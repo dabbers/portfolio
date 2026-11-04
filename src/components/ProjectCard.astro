@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from "astro:content";
+import StatusBadge from "@components/StatusBadge.astro";
+
+type Props = {
+  entry: CollectionEntry<"projects">;
+};
+
+const { entry } = Astro.props;
+---
+
+<a
+  href={`/projects/${entry.id}`}
+  class="group relative flex flex-nowrap items-start gap-3 rounded-lg border border-stone-900/10 bg-white/40 px-4 py-3 pr-10 hover:border-accent/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-accent/40 transition-colors duration-200 ease-in-out"
+>
+  <div class="flex min-w-0 flex-1 flex-col gap-0.5">
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <span class="font-mono font-semibold text-stone-900 group-hover:text-accent dark:text-stone-100 transition-colors duration-200">
+        {entry.data.title}
+      </span>
+      {entry.data.years && <span class="font-mono text-xs text-stone-500 dark:text-stone-400">{entry.data.years}</span>}
+    </div>
+    <div class="text-sm text-stone-600 dark:text-stone-400">
+      {entry.data.description}
+    </div>
+  </div>
+  <StatusBadge status={entry.data.status} class="mt-0.5 shrink-0" />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute right-2 top-1/2 size-5 -translate-y-1/2 fill-none stroke-current stroke-2 text-stone-400 group-hover:text-accent" aria-hidden="true">
+    <line x1="5" y1="12" x2="19" y2="12" class="translate-x-3 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line>
+    <polyline points="12 5 19 12 12 19" class="-translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline>
+  </svg>
+</a>

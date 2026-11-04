@@ -1,0 +1,40 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import { Content as About } from "../content/home.md";
+import { SITE, HOME, SOCIALS } from "@consts";
+
+const socials = SOCIALS.filter((s) => s.HREF);
+---
+
+<PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION} bare>
+  <Container>
+    <div class="space-y-12">
+      <article class="animate">
+        <About />
+      </article>
+
+      <section class="animate space-y-2">
+        <h2 class="text-lg">Contact</h2>
+        <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <span>Email: <span class="font-mono text-sm">{SITE.EMAIL_DISPLAY}</span></span>
+          {
+            socials.map((social) => (
+              <>
+                <span class="text-stone-400 dark:text-stone-600">·</span>
+                <Link href={social.HREF} external>
+                  {social.NAME}
+                </Link>
+              </>
+            ))
+          }
+        </p>
+      </section>
+
+      <section class="animate font-mono text-sm text-stone-500 dark:text-stone-400">
+        Older work is under <Link href="/projects">projects</Link>. A few notes are under <Link href="/writing">writing</Link>.
+      </section>
+    </div>
+  </Container>
+</PageLayout>

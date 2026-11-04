@@ -1,0 +1,8 @@
+# Cloudflare Pages project config (direct-upload deploys).
+# Publish with:  npx wrangler pages deploy dist --project-name davidbarajas
+# (the npm script `deploy` wraps this). CI does the same on every push to main.
+# The Pages project must exist first:  npx wrangler pages project create davidbarajas
+
+name = "davidbarajas"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-12-01"
