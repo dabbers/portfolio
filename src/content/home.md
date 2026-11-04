@@ -3,9 +3,9 @@
 ## Work
 
 - **Calendly**: Senior full stack engineer on Monetization, working on billing infrastructure. I spent 14 months moving ~800K subscribers to Stripe, covering subscriptions, invoicing, tax, PayPal, and in-app purchases. I maintain the usage metering service and built the finance data reconciliation that checks Stripe and Apple App Store data against our internal billing records. I was interim lead for the team for almost a year.
-- **Polly**: Worked on an LLM API framework.
-- **Apple**: Siri, handling requests across devices. Wrote mostly Swift and Go.
-- **Microsoft**: SQL Server and Windows networking.
+- **Polly**: Slack poll and survey app. Integrated an LLM API into the product, built out a new plan that raised company revenue, and refactored the product onto a new platform.
+- **Apple**: Siri's video team. Owned the video and app-launch features for controlling a TV from other devices, and shipped the first refresh for Siri's 10th birthday. Wrote Swift, Go, and Java.
+- **Microsoft**: SQL Server and Windows networking, mostly in C++.
 
 ## Things I'm building
 
@@ -14,7 +14,7 @@ I run a small studio, dab Media, on the side:
 - **[KOmpare](/projects/kompare)**: Mobile-first tools for trading card vendors.
 - **[KOllectibles](/projects/kollectibles)**: A Pokémon collection tracker.
 - **[Puzzletorium](/projects/puzzletorium)**: A catalog of small puzzle games, built in Godot.
-- **[dabberz](/projects/dabberz)**: A platform for running LLM-driven development in parallel, isolated environments.
+- **[dabbit](/projects/dabbit)**: An email client that sorts your inbox into contexts and tells you what actually needs you.
 
 ## What I work in
 

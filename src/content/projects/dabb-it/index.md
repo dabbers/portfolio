@@ -1,6 +1,6 @@
 ---
-title: dabb.it
-description: A web IRC client that wanted to be IRCCloud before IRCCloud existed.
+title: dabb.it IRC client
+description: A web IRC client that wanted to be IRCCloud before IRCCloud existed. The name lives on in a very different app.
 status: archived
 stack: [Angular, Node.js, WebSockets, jQuery UI, socket.io]
 repo: https://github.com/dabbers/dab.irc.manager
@@ -20,3 +20,5 @@ dabb.it started out using jQuery UI and socket.io. I'm not a designer by any mea
 The refreshed dabb.it used Angular for the front end, WebSockets for the communication layer, and Node.js with a WebSocket server package from npm. I wrote the IRC parser myself; it's [on GitHub](https://github.com/dabbers/dab.irc.manager/blob/master/sample.ts). This of course was not scalable, but my concern at the time was releasing something usable and scaling later.
 
 ![One of the settings views in the refreshed UI. Angular 1.0 with a Node.js backend.](./settings.jpg)
+
+The dabb.it name now belongs to [an email client](/projects/dabbit), which has nothing to do with IRC except the author.
