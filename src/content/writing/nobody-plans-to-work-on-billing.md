@@ -12,4 +12,4 @@ Years later, deep into billing and payments work, I've talked to a bunch of othe
 
 Billing is one of the most important systems a company has, and most people end up owning it by coincidence.
 
-*First posted on [LinkedIn](https://www.linkedin.com/in/david-barajas-swe).*
+*First posted on [LinkedIn](https://lnkd.in/p/gYfgut37).*

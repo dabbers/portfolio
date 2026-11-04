@@ -12,4 +12,4 @@ Everyone points at Anthropic and OpenAI as the proof of usage-based billing. The
 
 Those two things get called the same thing, and they aren't. Same telemetry, completely different job. One decides whether you're allowed to keep going. The other decides what you owe.
 
-*First posted on [LinkedIn](https://www.linkedin.com/in/david-barajas-swe).*
+*First posted on [LinkedIn](https://lnkd.in/p/gSMkfNeq).*
