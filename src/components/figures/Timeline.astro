@@ -1,0 +1,79 @@
+---
+// Rows of labelled time spans on a shared axis, drawn in HTML so it follows
+// the site's themes. Kinds: "work" (normal), "light" (setup), "strong" (the
+// span the text is about), "idle" (waiting: an empty dashed box).
+interface Seg {
+  from: number;
+  to: number;
+  text: string;
+  kind?: "work" | "light" | "strong" | "idle";
+}
+interface Row {
+  label: string;
+  segs: Seg[];
+}
+interface Props {
+  caption: string;
+  rows: Row[];
+  end: number;
+  ticks: number[];
+  unit?: string;
+}
+
+const { caption, rows, end, ticks, unit = "" } = Astro.props;
+const pos = (v: number) => `${(v / end) * 100}%`;
+const kinds = {
+  work: "bg-stone-400/70 text-stone-900 dark:bg-stone-600 dark:text-stone-100",
+  light: "bg-stone-300/70 text-stone-700 dark:bg-stone-700/70 dark:text-stone-300",
+  strong: "bg-stone-800 text-stone-100 dark:bg-stone-200 dark:text-stone-900",
+  idle: "border border-dashed border-stone-500 text-stone-600 dark:border-stone-500 dark:text-stone-400",
+};
+---
+
+<figure class="not-prose my-8">
+  <div class="fig-card">
+    <div class="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1.5">
+      {
+        rows.map((row) => (
+          <>
+            <span class="text-[11px] leading-tight text-stone-600 sm:text-xs dark:text-stone-400">{row.label}</span>
+            <div class="relative h-7">
+              {row.segs.map((seg) => (
+                <div
+                  class:list={[
+                    "absolute inset-y-0 flex items-center justify-center overflow-hidden rounded-sm",
+                    kinds[seg.kind ?? "work"],
+                  ]}
+                  style={`left:${pos(seg.from)};width:calc(${pos(seg.to - seg.from)} - 2px)`}
+                  title={seg.text}
+                >
+                  {(seg.to - seg.from) / end >= 0.2 && (
+                    <span class="truncate px-1.5 font-mono text-[10px] sm:text-[11px]">{seg.text}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </>
+        ))
+      }
+      <span />
+      <div class="relative mt-1 h-5 border-t border-stone-900/20 dark:border-white/20">
+        {
+          ticks.map((tick) => (
+            <span
+              class:list={[
+                "absolute top-1 whitespace-nowrap font-mono text-[10px] text-stone-500 dark:text-stone-400",
+                tick === end ? "-translate-x-full" : tick > 0 && "-translate-x-1/2",
+              ]}
+              style={`left:${pos(tick)}`}
+            >
+              {tick}
+              {tick === ticks[ticks.length - 1] && unit}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <figcaption class="fig-caption">{caption}</figcaption>
+</figure>

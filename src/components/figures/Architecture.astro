@@ -1,0 +1,64 @@
+---
+// The slotgw architecture, drawn in HTML so it follows the site's themes.
+// Requests flow down the page, tokens flow back up. `pacer` marks the pacer
+// as the part the text is about.
+interface Props {
+  caption: string;
+  pacer?: boolean;
+}
+const { caption, pacer = false } = Astro.props;
+
+const box = "whitespace-nowrap rounded border border-stone-900/15 bg-stone-100 px-1.5 py-1.5 text-[11px] sm:px-2 sm:text-xs dark:border-white/15 dark:bg-stone-900";
+const strongBox = "whitespace-nowrap rounded border border-stone-900 bg-stone-800 px-1.5 py-1.5 text-[11px] sm:px-2 sm:text-xs text-stone-100 dark:border-stone-100 dark:bg-stone-200 dark:text-stone-900";
+const end = "rounded border border-stone-900/15 px-3 py-2 text-center dark:border-white/15";
+const sub = "text-[11px] text-stone-500 dark:text-stone-400";
+const link = "grid grid-cols-2 gap-4 text-[11px] text-stone-600 dark:text-stone-400";
+const lane = "flex flex-wrap items-center justify-center gap-x-1 gap-y-2 sm:gap-x-1.5";
+---
+
+<figure class="not-prose my-8">
+  <div class="fig-card flex flex-col gap-2 font-mono text-xs text-stone-900 dark:text-stone-100">
+    <div class={end}>
+      Clients <span class={sub}>· load generator · OpenAI SDK</span>
+    </div>
+
+    <div class={link}>
+      <span class="text-right">request ↓</span>
+      <span>↑ paced stream</span>
+    </div>
+
+    <div class="rounded border border-stone-900/15 p-3 dark:border-white/15">
+      <p class={`mb-3 text-center ${sub}`}>Gateway (slotgw)</p>
+      <div class="grid gap-4">
+        <div>
+          <div class={lane}>
+            <span class={box}>API + shape check</span>
+            <span>→</span>
+            <span class={box}>Queue</span>
+            <span>→</span>
+            <span class={box}>Scheduler</span>
+          </div>
+          <p class={`mt-2 text-center ${sub}`}>the scheduler reads the replica ledgers</p>
+        </div>
+        <div>
+          <div class={lane}>
+            <span class={box}>Meter + billing</span>
+            <span>←</span>
+            <span class={pacer ? strongBox : box}>Pacer</span>
+          </div>
+          {pacer && <p class="mt-2 text-center text-[11px]">the pacer holds tokens back</p>}
+        </div>
+      </div>
+    </div>
+
+    <div class={link}>
+      <span class="text-right">forward ↓</span>
+      <span>↑ tokens{pacer && ", as fast as made"}</span>
+    </div>
+
+    <div class={end}>
+      vLLM, one per GPU <span class={sub}>· RunPod 4090s · local 2080 Ti</span>
+    </div>
+  </div>
+  <figcaption class="fig-caption">{caption}</figcaption>
+</figure>
