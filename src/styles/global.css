@@ -113,3 +113,22 @@ html #back-to-top {
 html.scrolled #back-to-top {
   @apply opacity-100 pointer-events-auto;
 }
+
+/* Captioned figures (an image with a title in Markdown): centre the caption. */
+article figure img {
+  @apply my-0 w-full;
+}
+
+article figcaption {
+  @apply text-center;
+}
+
+/* Quoted exchanges read as plain text: no italics, no added quote marks. */
+article blockquote {
+  @apply font-normal not-italic;
+}
+
+article blockquote p::before,
+article blockquote p::after {
+  content: none;
+}
