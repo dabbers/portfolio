@@ -114,13 +114,18 @@ html.scrolled #back-to-top {
   @apply opacity-100 pointer-events-auto;
 }
 
-/* Captioned figures (an image with a title in Markdown): centre the caption. */
-article figure img {
-  @apply my-0 w-full;
+/* Figures drawn in HTML (src/components/figures): same card as the lists. */
+.fig-card {
+  @apply rounded-md border border-stone-900/10 bg-white/40 p-4 sm:p-5;
+  @apply dark:border-white/10 dark:bg-white/[0.03];
 }
 
-article figcaption {
-  @apply text-center;
+.fig-measure {
+  @apply mb-4 font-mono text-xs text-stone-600 dark:text-stone-400;
+}
+
+.fig-caption {
+  @apply mt-3 text-center text-xs text-stone-500 dark:text-stone-400;
 }
 
 /* Quoted exchanges read as plain text: no italics, no added quote marks. */

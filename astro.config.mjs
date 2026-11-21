@@ -20,32 +20,10 @@ const ghostRedirects = {
   "/rss": "/rss.xml",
 };
 
-// A Markdown image with a title, alone in its paragraph, becomes a figure with
-// the title as its caption: ![alt text](./chart.png "Caption under the chart")
-function rehypeFigureCaptions() {
-  const walk = (node) => {
-    if (!node.children) return;
-    node.children.forEach(walk);
-    if (node.tagName !== "p") return;
-    const kids = node.children.filter((c) => !(c.type === "text" && !c.value.trim()));
-    const img = kids[0];
-    if (kids.length !== 1 || img.tagName !== "img" || !img.properties?.title) return;
-    const caption = img.properties.title;
-    delete img.properties.title;
-    node.tagName = "figure";
-    node.children = [
-      img,
-      { type: "element", tagName: "figcaption", properties: {}, children: [{ type: "text", value: caption }] },
-    ];
-  };
-  return walk;
-}
-
 export default defineConfig({
   site: "https://davidbarajas.com",
   output: "static",
   trailingSlash: "ignore",
   integrations: [mdx(), sitemap(), tailwind()],
-  markdown: { rehypePlugins: [rehypeFigureCaptions] },
   redirects: ghostRedirects,
 });

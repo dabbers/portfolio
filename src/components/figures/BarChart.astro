@@ -1,0 +1,77 @@
+---
+// A small bar chart drawn in HTML, so it follows the site's light and dark
+// themes. Bars are neutral; `strong` marks the ones the text is about.
+interface Bar {
+  label: string;
+  value: number;
+  strong?: boolean;
+}
+interface Group {
+  label?: string;
+  // A dashed reference line across the group, in the same unit as the bars.
+  ref?: number;
+  bars: Bar[];
+}
+interface Props {
+  caption: string;
+  measure: string;
+  groups: Group[];
+  max?: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+}
+
+const { caption, measure, groups, max, prefix = "", suffix = "", decimals = 0 } = Astro.props;
+const top = max ?? Math.max(...groups.flatMap((g) => g.bars.map((b) => b.value)));
+const fmt = (v: number) => `${prefix}${v.toFixed(decimals)}${suffix}`;
+const pct = (v: number) => `${(v / top) * 100}%`;
+---
+
+<figure class="not-prose my-8">
+  <div class="fig-card">
+    <p class="fig-measure">{measure}</p>
+    <div class="flex justify-center gap-5 sm:gap-10">
+      {
+        groups.map((group) => (
+          <div class="flex flex-col">
+            <div class="relative flex h-44 items-end gap-2 border-b border-stone-900/20 pt-6 dark:border-white/20">
+              {group.bars.map((bar) => (
+                <div
+                  class:list={[
+                    "relative w-10 rounded-t sm:w-16",
+                    bar.strong ? "bg-stone-800 dark:bg-stone-200" : "bg-stone-400/70 dark:bg-stone-600",
+                  ]}
+                  style={`height:${pct(bar.value)}`}
+                  title={`${bar.label}: ${fmt(bar.value)}`}
+                >
+                  <span class="absolute inset-x-0 bottom-full mb-1 text-center font-mono text-xs text-stone-900 dark:text-stone-100">
+                    {fmt(bar.value)}
+                  </span>
+                </div>
+              ))}
+              {group.ref !== undefined && (
+                <div
+                  class="absolute inset-x-0 border-t border-dashed border-stone-900 dark:border-stone-100"
+                  style={`bottom:${pct(group.ref)}`}
+                  title={fmt(group.ref)}
+                />
+              )}
+            </div>
+            <div class="mt-2 flex gap-2">
+              {group.bars.map((bar) => (
+                <span class="w-10 text-center text-[11px] leading-tight text-stone-600 sm:w-16 sm:text-xs dark:text-stone-400">
+                  {bar.label}
+                </span>
+              ))}
+            </div>
+            {group.label && (
+              <span class="mt-2 text-center font-mono text-xs text-stone-900 dark:text-stone-100">{group.label}</span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <figcaption class="fig-caption">{caption}</figcaption>
+</figure>
